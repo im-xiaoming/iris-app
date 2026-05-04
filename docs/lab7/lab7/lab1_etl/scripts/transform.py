@@ -6,7 +6,7 @@ from typing import Dict
 
 import pandas as pd
 
-from utils import get_logger, log_to_db
+from ml_app.docs.lab7.lab7.lab1_etl.scripts.utils import get_logger, log_to_db
 
 logger = get_logger("etl.transform")
 PROJECT_ROOT = Path(__file__).resolve().parents[1]

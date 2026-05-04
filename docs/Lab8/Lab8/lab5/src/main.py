@@ -11,8 +11,8 @@ import yaml
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-from cache import RedisCache
-from logger_config import setup_logger
+from ml_app.docs.Lab8.Lab8.lab5.src.cache import RedisCache
+from ml_app.docs.Lab8.Lab8.lab5.src.logger_config import setup_logger
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]

@@ -8,7 +8,7 @@ import mlflow
 import mlflow.sklearn
 from mlflow import MlflowClient
 
-from common import PROJECT_ROOT, artifact_uri, configure_mlflow, train_and_evaluate
+from ml_app.docs.lab7.lab7.lab6_model_registry.src.common import PROJECT_ROOT, artifact_uri, configure_mlflow, train_and_evaluate
 
 
 def ensure_experiment(experiment_name: str) -> str:

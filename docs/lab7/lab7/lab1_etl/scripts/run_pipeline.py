@@ -9,10 +9,10 @@ CURRENT_DIR = Path(__file__).resolve().parent
 if str(CURRENT_DIR) not in sys.path:
     sys.path.insert(0, str(CURRENT_DIR))
 
-from extract import extract_from_api, extract_from_csv
-from load import load_all
-from transform import transform
-from utils import get_logger
+from ml_app.docs.lab7.lab7.lab1_etl.scripts.extract import extract_from_api, extract_from_csv
+from ml_app.docs.lab7.lab7.lab1_etl.scripts.load import load_all
+from ml_app.docs.lab7.lab7.lab1_etl.scripts.transform import transform
+from ml_app.docs.lab7.lab7.lab1_etl.scripts.utils import get_logger
 
 logger = get_logger("etl.main")
 

@@ -6,7 +6,7 @@ from typing import Dict
 import pandas as pd
 from sqlalchemy import text
 
-from utils import db_connection, get_logger, log_to_db
+from ml_app.docs.lab7.lab7.lab1_etl.scripts.utils import db_connection, get_logger, log_to_db
 
 logger = get_logger("etl.load")
 

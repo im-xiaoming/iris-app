@@ -4,7 +4,7 @@ import argparse
 
 from mlflow import MlflowClient
 
-from common import configure_mlflow
+from ml_app.docs.lab7.lab7.lab6_model_registry.src.common import configure_mlflow
 
 
 def main() -> None:
