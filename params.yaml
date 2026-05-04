@@ -1,0 +1,22 @@
+preprocess:
+  input: data/raw/iris.csv
+  output: data/preprocessed/iris_preprocessed.csv
+
+train:
+  data_path: data/preprocessed/iris_preprocessed.csv
+  model_path: models/iris_model.pkl
+  scaler_path: models/iris_scaler.pkl
+  parameters:
+    rf_max_depth: {
+      min: 2,
+      max: 10
+    }
+    rf_n_estimators: {
+      min: 50,
+      max: 200
+    }
+    rf_max_features: {
+      min: 0.1,
+      max: 1.0
+    }
+
