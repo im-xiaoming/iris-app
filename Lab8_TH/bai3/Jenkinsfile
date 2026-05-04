@@ -1,0 +1,25 @@
+pipeline {
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        sh 'python train.py'
+      }
+    }
+    stage('Test') {
+      steps {
+        sh 'python test_model.py'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'python deploy.py'
+      }
+    }
+  }
+  post {
+    failure {
+      sh 'python rollback.py || true'
+    }
+  }
+}

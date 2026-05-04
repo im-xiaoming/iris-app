@@ -1,0 +1,6 @@
+prepare:
+  fill_age_strategy: median
+  fill_embarked_value: S
+train:
+  test_size: 0.25
+  random_state: 42

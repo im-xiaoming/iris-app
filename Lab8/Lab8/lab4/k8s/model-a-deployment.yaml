@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: model-a
+  template:
+    metadata:
+      labels:
+        app: model-a
+    spec:
+      containers:
+        - name: model-a
+          image: lab4-ab-test:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MODEL_VARIANT
+              value: model_a

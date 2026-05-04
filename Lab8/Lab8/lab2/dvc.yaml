@@ -1,0 +1,39 @@
+stages:
+  prepare_data:
+    cmd: python src/prepare_data.py --config params.yaml
+    deps:
+      - src/prepare_data.py
+      - params.yaml
+    params:
+      - seed
+      - data.test_size
+      - data.target_column
+      - data.output_path
+    outs:
+      - data/raw/heart_disease.csv
+
+  train:
+    cmd: python src/train_pipeline.py --config params.yaml
+    deps:
+      - src/train_pipeline.py
+      - params.yaml
+      - data/raw/heart_disease.csv
+    params:
+      - seed
+      - model.type
+      - model.n_estimators
+      - model.max_depth
+      - model.min_samples_split
+      - model.min_samples_leaf
+      - artifacts.model_path
+      - artifacts.metrics_path
+      - artifacts.predictions_path
+      - artifacts.environment_path
+      - artifacts.config_snapshot_path
+    outs:
+      - artifacts/model.joblib
+      - artifacts/predictions.csv
+      - artifacts/environment.json
+      - artifacts/config_snapshot.yaml
+    metrics:
+      - artifacts/metrics.json

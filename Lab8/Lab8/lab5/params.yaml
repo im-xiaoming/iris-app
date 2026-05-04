@@ -1,0 +1,24 @@
+seed: 42
+
+api:
+  host: 0.0.0.0
+  port: 8000
+  model_path: models/realtime_model.joblib
+
+redis:
+  host: localhost
+  port: 6379
+  db: 0
+  ttl_seconds: 300
+  prediction_prefix: pred
+
+logging:
+  log_path: logs/prediction_service.log
+
+performance:
+  batch_size: 1
+  timeout_ms: 50
+
+data:
+  target_column: diagnosis
+  raw_path: data/raw/breast_cancer.csv

@@ -1,0 +1,16 @@
+seed: 42
+
+traffic:
+  model_a_weight: 50
+  model_b_weight: 50
+
+data:
+  target_column: diagnosis
+  raw_path: data/raw/breast_cancer.csv
+  evaluation_path: data/evaluation/ab_test_requests.csv
+
+artifacts:
+  model_a_path: models/model_a.joblib
+  model_b_path: models/model_b.joblib
+  metrics_path: reports/ab_metrics.json
+  winner_path: reports/winner.json

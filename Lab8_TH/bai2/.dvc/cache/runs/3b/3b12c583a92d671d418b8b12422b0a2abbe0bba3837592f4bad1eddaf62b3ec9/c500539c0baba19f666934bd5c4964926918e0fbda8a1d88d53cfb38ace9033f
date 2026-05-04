@@ -1,0 +1,11 @@
+cmd: .venv\Scripts\python.exe src\make_data.py
+deps:
+- path: src/make_data.py
+  hash: md5
+  md5: 20cd8efd35c15b555db82a864cafd2f3
+  size: 358
+outs:
+- path: data/raw/wine.csv
+  hash: md5
+  md5: be49acb4f6eb13ea7f094188a4ae3638
+  size: 12435

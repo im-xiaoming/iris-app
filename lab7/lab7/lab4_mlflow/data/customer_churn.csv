@@ -1,0 +1,21 @@
+customer_id,tenure,monthly_charges,total_charges,contract_type,support_calls,is_premium,late_payments,churn
+1,3,75,225,Month-to-month,4,0,3,1
+2,24,55,1320,One year,1,1,0,0
+3,12,85,1020,Month-to-month,3,0,2,1
+4,48,62,2976,Two year,0,1,0,0
+5,6,95,570,Month-to-month,5,0,4,1
+6,18,45,810,One year,1,0,1,0
+7,36,70,2520,Two year,0,1,0,0
+8,9,88,792,Month-to-month,4,0,3,1
+9,30,50,1500,One year,1,1,0,0
+10,15,65,975,Month-to-month,2,0,1,1
+11,60,40,2400,Two year,0,1,0,0
+12,8,90,720,Month-to-month,5,0,4,1
+13,21,58,1218,One year,1,1,1,0
+14,27,52,1404,One year,2,0,1,0
+15,5,99,495,Month-to-month,6,0,5,1
+16,42,61,2562,Two year,0,1,0,0
+17,11,80,880,Month-to-month,3,0,2,1
+18,54,47,2538,Two year,0,1,0,0
+19,16,73,1168,Month-to-month,2,0,2,1
+20,33,57,1881,One year,1,1,0,0

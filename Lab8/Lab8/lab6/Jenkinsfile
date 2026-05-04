@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+
+    environment {
+        VENV_DIR = ".venv"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Setup') {
+            steps {
+                bat 'python -m venv %VENV_DIR%'
+                bat '%VENV_DIR%\\Scripts\\pip install -r lab6\\requirements.txt'
+            }
+        }
+
+        stage('Data Pipeline') {
+            steps {
+                bat '%VENV_DIR%\\Scripts\\python lab6\\pipelines\\data_pipeline.py'
+            }
+        }
+
+        stage('Training Pipeline') {
+            steps {
+                bat '%VENV_DIR%\\Scripts\\python lab6\\pipelines\\training_pipeline.py'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat '%VENV_DIR%\\Scripts\\pytest lab6\\tests'
+            }
+        }
+
+        stage('Deploy') {
+            when {
+                branch 'main'
+            }
+            steps {
+                bat '%VENV_DIR%\\Scripts\\python lab6\\pipelines\\deployment_pipeline.py'
+            }
+        }
+
+        stage('Monitoring') {
+            steps {
+                bat '%VENV_DIR%\\Scripts\\python lab6\\monitoring\\generate_monitoring_report.py'
+            }
+        }
+    }
+}

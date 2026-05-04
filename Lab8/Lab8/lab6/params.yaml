@@ -1,0 +1,29 @@
+seed: 42
+
+data:
+  target_column: diagnosis
+  raw_path: data/raw/breast_cancer.csv
+  processed_train_path: data/processed/train.csv
+  processed_test_path: data/processed/test.csv
+  test_size: 0.2
+
+training:
+  model_type: random_forest
+  n_estimators: 200
+  max_depth: 8
+  min_samples_split: 4
+  min_samples_leaf: 2
+  model_path: artifacts/model.joblib
+  metrics_path: artifacts/training_metrics.json
+
+deployment:
+  service_port: 8000
+  deployed_model_path: deployment/current/model.joblib
+
+monitoring:
+  request_log_path: monitoring/logs/prediction_requests.jsonl
+  metrics_snapshot_path: monitoring/reports/service_metrics.json
+  drift_report_path: monitoring/reports/drift_report.json
+
+ci_cd:
+  workflow_path: .github/workflows/mlops-ci-cd.yml

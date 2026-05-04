@@ -1,0 +1,19 @@
+stages:
+  prepare:
+    cmd: python src/prepare_data.py
+    deps:
+      - src/prepare_data.py
+      - data/raw/titanic.csv
+      - params.yaml
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+  train:
+    cmd: python src/train_baseline.py
+    deps:
+      - src/train_baseline.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+      - params.yaml
+    metrics:
+      - metrics.json

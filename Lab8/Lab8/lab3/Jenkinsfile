@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+
+    environment {
+        VENV_DIR = ".venv"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Setup') {
+            steps {
+                bat 'python -m venv %VENV_DIR%'
+                bat '%VENV_DIR%\\Scripts\\pip install -r lab3\\requirements.txt'
+            }
+        }
+
+        stage('Build Pipeline') {
+            steps {
+                bat '%VENV_DIR%\\Scripts\\python lab3\\src\\train_model.py'
+            }
+        }
+
+        stage('Test Model') {
+            steps {
+                bat '%VENV_DIR%\\Scripts\\python lab3\\src\\validate_model.py'
+                bat '%VENV_DIR%\\Scripts\\pytest lab3\\tests'
+            }
+        }
+
+        stage('Deploy') {
+            when {
+                branch 'main'
+            }
+            steps {
+                bat '%VENV_DIR%\\Scripts\\python lab3\\src\\deploy_model.py'
+            }
+        }
+    }
+
+    post {
+        failure {
+            bat '%VENV_DIR%\\Scripts\\python lab3\\src\\rollback_model.py'
+        }
+    }
+}

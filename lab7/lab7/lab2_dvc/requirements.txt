@@ -1,0 +1,4 @@
+dvc==3.53.2
+pandas==2.2.0
+scikit-learn==1.4.0
+PyYAML==6.0.1

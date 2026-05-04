@@ -1,0 +1,44 @@
+name: ML CI CD Pipeline
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: pip install -r lab3/requirements.txt
+
+      - name: Build pipeline
+        working-directory: lab3
+        run: python src/train_model.py
+
+      - name: Test model
+        working-directory: lab3
+        run: |
+          python src/validate_model.py
+          pytest tests
+
+      - name: Deploy automatically
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        working-directory: lab3
+        run: python src/deploy_model.py
+
+      - name: Rollback on failure
+        if: failure()
+        working-directory: lab3
+        run: python src/rollback_model.py

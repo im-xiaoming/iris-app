@@ -1,0 +1,26 @@
+name: ml-ci
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - run: pip install -r requirements.txt
+        working-directory: bai3
+      - run: python train.py
+        working-directory: bai3
+      - run: python test_model.py
+        working-directory: bai3
+      - run: python deploy.py
+        working-directory: bai3
+      - if: failure()
+        run: python rollback.py || true
+        working-directory: bai3

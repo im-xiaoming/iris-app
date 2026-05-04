@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ab-router
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ab-router
+  template:
+    metadata:
+      labels:
+        app: ab-router
+    spec:
+      containers:
+        - name: ab-router
+          image: lab4-ab-test:latest
+          ports:
+            - containerPort: 5000

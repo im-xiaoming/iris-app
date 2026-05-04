@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ab-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ab-api
+  template:
+    metadata:
+      labels:
+        app: ab-api
+    spec:
+      containers:
+        - name: ab-api
+          image: bai4:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ab-api
+spec:
+  selector:
+    app: ab-api
+  ports:
+    - port: 80
+      targetPort: 8001

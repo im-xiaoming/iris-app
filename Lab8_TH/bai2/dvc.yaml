@@ -1,0 +1,24 @@
+stages:
+  data:
+    cmd: .venv\Scripts\python.exe src\make_data.py
+    deps:
+      - src/make_data.py
+    outs:
+      - data/raw/wine.csv
+  train:
+    cmd: .venv\Scripts\python.exe src\train.py
+    deps:
+      - src/train.py
+      - data/raw/wine.csv
+      - params.yaml
+    params:
+      - seed
+      - test_size
+      - model.n
+      - model.d
+    outs:
+      - out/model.pkl
+      - out/params_used.yaml
+      - out/env.txt
+    metrics:
+      - out/metrics.json

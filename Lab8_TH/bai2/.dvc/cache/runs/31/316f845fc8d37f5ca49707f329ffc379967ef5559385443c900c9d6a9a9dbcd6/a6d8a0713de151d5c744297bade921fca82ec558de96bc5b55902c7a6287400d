@@ -1,0 +1,37 @@
+cmd: .venv\Scripts\python.exe src\train.py
+deps:
+- path: data/raw/wine.csv
+  hash: md5
+  md5: be49acb4f6eb13ea7f094188a4ae3638
+  size: 12435
+- path: params.yaml
+  hash: md5
+  md5: 429129b03694f1fa133b21618414aab7
+  size: 47
+- path: src/train.py
+  hash: md5
+  md5: f142ef3b9ea7d25cf8d08eef89c14986
+  size: 1338
+params:
+  params.yaml:
+    model.d: 6
+    model.n: 120
+    seed: 42
+    test_size: 0.2
+outs:
+- path: out/env.txt
+  hash: md5
+  md5: dbe64583bcf8d8ef8d60f16547084adc
+  size: 2006
+- path: out/metrics.json
+  hash: md5
+  md5: 9c08a1f5750f213f503d8d62cefaa8f2
+  size: 12
+- path: out/model.pkl
+  hash: md5
+  md5: 7f6892af56e6e5bae53fd18c4f4f2b28
+  size: 252801
+- path: out/params_used.yaml
+  hash: md5
+  md5: 429129b03694f1fa133b21618414aab7
+  size: 47

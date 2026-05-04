@@ -1,0 +1,45 @@
+name: End to End MLOps CI CD
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        working-directory: lab6
+        run: pip install -r requirements.txt
+
+      - name: Run data pipeline
+        working-directory: lab6
+        run: python pipelines/data_pipeline.py
+
+      - name: Run training pipeline
+        working-directory: lab6
+        run: python pipelines/training_pipeline.py
+
+      - name: Run tests
+        working-directory: lab6
+        run: pytest tests
+
+      - name: Deploy model
+        working-directory: lab6
+        run: python pipelines/deployment_pipeline.py
+
+      - name: Generate monitoring report
+        working-directory: lab6
+        run: python monitoring/generate_monitoring_report.py

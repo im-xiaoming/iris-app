@@ -1,0 +1,16 @@
+seed: 42
+
+data:
+  test_size: 0.2
+  target_column: diagnosis
+  raw_path: data/raw/breast_cancer.csv
+
+artifacts:
+  model_path: models/model.joblib
+  metrics_path: reports/metrics.json
+  validation_path: reports/validation.json
+
+deployment:
+  registry_dir: deployment/registry
+  current_link: deployment/current
+  previous_link: deployment/previous
